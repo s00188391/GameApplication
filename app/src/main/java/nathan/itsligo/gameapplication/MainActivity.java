@@ -53,9 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         tvRoundInfo.setText("Round " + GameInfo.roundNumber);
 
-        AddColoursToColourList(); //Add all colours from colours. xml to a list.
+        AddColoursToColourList();
 
-        //If at start of game, assign random colour to each button.
         if(GameInfo.roundNumber == 1)
         {
             for(int i = 0; i < buttons.length; i++)
@@ -66,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 buttonColours[i] = randomColour;
                 AssignColourToButton(buttons[i],randomColour);
 
-                colourList.remove(randomIndex); //List ensures that same colour isn't chosen more than once.
+                colourList.remove(randomIndex);
             }
         }
-        else //Not at start of game - so round 2,3 etc. Don't get random colours -  Get colours from sequence activity.
+        else
         {
             buttonColours = getIntent().getIntArrayExtra("ButtonColours");
             for(int i = 0; i < buttons.length; i++)
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(GameInfo.IsAtStartOfGame()) //Player is just starting, add 4 to sequence.
+        if(GameInfo.IsAtStartOfGame())
         {
             GameInfo.AddRandomNumbersToSequence(GameInfo.currentSequenceAmount);
         }
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     };
                     sequenceHandler.postDelayed(toDefaultRunnable, millisecondsToGoToDefaultColour);
 
-                } // end runnable
+                }
             };
             sequenceHandler.postDelayed(toWhiteRunnable, millisecondsToFlash);
 

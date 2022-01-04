@@ -103,7 +103,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     }
 
 
-    // code to update the single contact
+
     public int updateGamescore(GameScore gameScore)
     {
         SQLiteDatabase db = this.getWritableDatabase();

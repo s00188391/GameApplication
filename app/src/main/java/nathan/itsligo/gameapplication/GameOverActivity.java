@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameOverActivity extends AppCompatActivity {
 
-    //UI Elements.
+
     private TextView tvScoreInfo, tvRoundInfo, tvTop5ScoreNotification;
     private EditText etEnterName;
     private Button btnSubmitScore;
@@ -24,10 +24,9 @@ public class GameOverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 
-        //Database.
         db = new DatabaseHandler(this);
 
-        //Find UI Elements.
+
         tvScoreInfo = findViewById(R.id.tvScore);
         tvRoundInfo = findViewById(R.id.tvRound);
         tvTop5ScoreNotification = findViewById(R.id.tvTopScoreNotification);

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class HighScores extends AppCompatActivity
 {
-    //UI Elements.
+
     Button btnPlayAgain;
     TextView tvHighScore1;
     TextView tvHighScore2;
@@ -28,7 +28,7 @@ public class HighScores extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_scores);
 
-        //Finding UI Elements.
+
         btnPlayAgain = findViewById(R.id.btnPlayAgain);
         tvHighScore1 = findViewById(R.id.tvHighScore1);
         tvHighScore2 = findViewById(R.id.tvHighScore2);
@@ -38,7 +38,7 @@ public class HighScores extends AppCompatActivity
         tvHighScoreTable = new TextView[]{tvHighScore1,tvHighScore2,tvHighScore3,tvHighScore4,tvHighScore5};
 
 
-        //Populate text views with top 5 high scores.
+
         DatabaseHandler db = new DatabaseHandler(this);
         List<GameScore> top5Scores;
         top5Scores = db.getTop5Scores();

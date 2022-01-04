@@ -7,15 +7,15 @@ public class GameInfo
 {
     public static ArrayList<Integer> sequence = new ArrayList<>();
 
-    //Round.
+
     public static int roundNumber = 1;
 
-    //Sequence.
+
     public static int startingSequenceAmount;
     public static int currentSequenceAmount;
     private static int sequenceIncreaseAmount = 2;
 
-    //Score.
+
     public static int playerScore = 0;
     private static int startingScoreToGivePerRound = 4;
     private static int currentScoreToGivePerRound = startingScoreToGivePerRound;

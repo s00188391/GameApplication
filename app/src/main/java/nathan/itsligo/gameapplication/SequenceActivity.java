@@ -17,13 +17,13 @@ import java.util.ArrayList;
 
 public class SequenceActivity extends AppCompatActivity implements SensorEventListener
 {
-    //UI Elements.
+
     private Button btnNorth, btnSouth,btnEast,btnWest;
     private ArrayList<Button> buttons;
 
     int[] buttonColours;
 
-    //Sensor fields for determining rotation of phone - using magnetic field and accelerometer sensors.
+
     private SensorManager sensorManager;
     private Sensor aSensor;
     private Sensor mSensor;
@@ -37,7 +37,7 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
     private float pitch;
     private float roll;
 
-    //Selecting sequence.
+
     private Button selectedButton;
     private boolean buttonIsSelected;
     private int currentSequenceIndex = 0;
@@ -51,14 +51,14 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
         setContentView(R.layout.activity_sequence);
 
 
-        //Setting up Sensor.
+
         sensorManager = (SensorManager) getSystemService(Activity.SENSOR_SERVICE);
         aSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         sensorManager.registerListener(this, aSensor, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-        //Finding UI Elements.
+
         btnNorth = findViewById(R.id.btnNorth);
         btnSouth = findViewById(R.id.btnSouth);
         btnEast = findViewById(R.id.btnEast);
@@ -71,7 +71,7 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
         GameInfo.startingSequenceAmount = buttons.size();
 
 
-        //Finding and assigning colours to each button from the previous activity.
+
         buttonColours = getIntent().getIntArrayExtra("ButtonColours");
         for(int i = 0; i < buttons.size();i++)
         {
@@ -128,7 +128,7 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
             accels = null;
 
 
-            //Check if phone is tilted a certain way - if it is, select button.
+
             if(PhoneTiltedNorth() && !buttonIsSelected)
             {
                 OnButtonSelected(btnNorth);
@@ -147,7 +147,7 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
             }
             else if(PhoneIsFlat())
             {
-                //If phone goes back to being flat after a button was selected.
+
                 if(buttonIsSelected)
                 {
                     //Reset button.
@@ -160,7 +160,7 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
                         currentSequenceIndex++;
 
 
-                        //If player finished the sequence correctly. Go to next round and load main activity.
+
                         if(currentSequenceIndex == GameInfo.sequence.size())
                         {
                             GameInfo.GoToNextRound();
@@ -186,18 +186,18 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
     {
         buttonIsSelected = true;
 
-        //Find Button to select.
+
         indexOfSelectedButton = buttons.indexOf(buttonToSelect);
         selectedButton = buttons.get(indexOfSelectedButton);
 
-        //Colours.
+
         defaultColourOfButtonSelected = GetColourOfButton(selectedButton);
         ViewCompat.setBackgroundTintList(selectedButton, ColorStateList.valueOf(getResources().getColor(R.color.White)));
     }
 
     private int GetColourOfButton(Button button) { return button.getBackgroundTintList().getDefaultColor(); }
 
-    //MAG + ACCEL
+
     private boolean PhoneTiltedNorth(){return azimuth > 90 && pitch < 80f && pitch > 60f && roll < 100f;}
     private boolean PhoneTiltedSouth(){return azimuth < 70f && pitch < 70f;}
     private boolean PhoneTiltedEast(){return azimuth > 120f && azimuth < 180f && pitch < 82f && roll < 35f ;}
@@ -205,7 +205,5 @@ public class SequenceActivity extends AppCompatActivity implements SensorEventLi
     private boolean PhoneIsFlat(){return azimuth > 120 && pitch > 80;}
 
 
-    //X = AZIMUTH
-    //Y = PITCH
-    //Z = ROLL
+
 }
